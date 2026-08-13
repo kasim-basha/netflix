@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Netflix Telugu Movies</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+                    NAVIGATION BAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        NETFLIX
+    </div>
+
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#movies">Movies</a>
+
+        <a href="#tvshows">TV Shows</a>
+
+        <a href="#popular">New & Popular</a>
+
+        <a href="#mylist">My List</a>
+
+    </nav>
+
+
+    <div class="nav-right">
+
+        <div class="search-box">
+
+            🔍
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search"
+            >
+
+        </div>
+
+
+        <span class="notification">
+            🔔
+        </span>
+
+
+        <div
+            class="profile"
+            onclick="toggleProfile()"
+        >
+
+            👤
+
+            <span>▼</span>
+
+
+            <div
+                class="profile-menu"
+                id="profileMenu"
+            >
+
+                <h3>
+                    My Profile
+                </h3>
+
+                <p>
+                    👤 Basha
+                </p>
+
+                <hr>
+
+                <button>
+                    Account
+                </button>
+
+                <button>
+                    Settings
+                </button>
+
+                <button>
+                    Help Center
+                </button>
+
+                <button onclick="logout()">
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+                        HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-content">
+
+        <span class="original">
+            NETFLIX ORIGINAL
+        </span>
+
+
+        <h1>
+            TELUGU MOVIES
+        </h1>
+
+
+        <div class="details">
+
+            <span>2026</span>
+
+            <span>16+</span>
+
+            <span>HD</span>
+
+            <span>Telugu</span>
+
+        </div>
+
+
+        <p>
+
+            Watch your favorite Telugu movies
+            in a Netflix-style streaming interface.
+
+            Add your own authorized video URLs
+            and play them directly in the browser.
+
+        </p>
+
+
+        <button
+            class="play-btn"
+            onclick="playMovie(
+                'https://www.w3schools.com/html/mov_bbb.mp4',
+                'Demo Video'
+            )"
+        >
+
+            ▶ Play Demo
+
+        </button>
+
+
+        <button
+            class="info-btn"
+            onclick="showInfo('Telugu Movies')"
+        >
+
+            ⓘ More Info
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+                    MOVIE SECTION
+===================================================== -->
+
+<main id="movies">
+
+
+    <section class="movie-section">
+
+        <h2>
+            Telugu Movies
+        </h2>
+
+
+        <div
+            class="movie-row"
+            id="movieContainer"
+        >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+                        MY LIST
+    ================================================= -->
+
+    <section
+        class="movie-section"
+        id="mylist"
+    >
+
+        <h2>
+            My List
+        </h2>
+
+
+        <div
+            class="movie-row"
+            id="myListContainer"
+        >
+
+        </div>
+
+
+        <p
+            id="emptyList"
+            class="empty"
+        >
+
+            Your list is empty.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+                    ADD YOUR VIDEO
+    ================================================= -->
+
+    <section class="add-section">
+
+        <h2>
+            Add Your Movie Video
+        </h2>
+
+
+        <p>
+            Paste a direct video URL below.
+        </p>
+
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="customTitle"
+                placeholder="Movie title"
+            >
+
+
+            <input
+                type="text"
+                id="customVideo"
+                placeholder="Paste video URL (.mp4)"
+            >
+
+
+            <input
+                type="text"
+                id="customImage"
+                placeholder="Poster image URL"
+            >
+
+
+            <button
+                onclick="addMovie()"
+            >
+
+                + Add Movie
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+                    VIDEO PLAYER
+===================================================== -->
+
+<div
+    class="video-modal"
+    id="videoModal"
+>
+
+    <div class="video-box">
+
+
+        <button
+            class="close-video"
+            onclick="closeVideo()"
+        >
+
+            ✕
+
+        </button>
+
+
+        <h2 id="videoTitle">
+            Movie
+        </h2>
+
+
+        <video
+            id="videoPlayer"
+            controls
+            playsinline
+        >
+
+            Your browser does not support
+            HTML5 video.
+
+        </video>
+
+
+        <p
+            id="videoError"
+            class="video-error"
+        >
+
+            Video could not be played.
+
+            Make sure you entered a direct
+            browser-playable video URL.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+                    INFO MODAL
+===================================================== -->
+
+<div
+    class="info-modal"
+    id="infoModal"
+>
+
+    <div class="info-box">
+
+        <button
+            onclick="closeInfo()"
+            class="close-info"
+        >
+
+            ✕
+
+        </button>
+
+
+        <h2 id="infoTitle">
+            Movie
+        </h2>
+
+
+        <p id="infoDescription">
+
+            Movie description.
+
+        </p>
+
+
+        <div class="info-details">
+
+            <span>⭐ 8.5</span>
+
+            <span>2026</span>
+
+            <span>HD</span>
+
+            <span>Telugu</span>
+
+        </div>
+
+
+        <button
+            class="play-btn"
+            onclick="playSelectedMovie()"
+        >
+
+            ▶ Play
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+                        FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        NETFLIX
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="#">
+            Audio and Subtitles
+        </a>
+
+        <a href="#">
+            Help Center
+        </a>
+
+        <a href="#">
+            Privacy
+        </a>
+
+        <a href="#">
+            Terms of Use
+        </a>
+
+    </div>
+
+
+    <p>
+        Netflix-style educational project
+    </p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
